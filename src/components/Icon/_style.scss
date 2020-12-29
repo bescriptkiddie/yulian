@@ -1,0 +1,7 @@
+// @each 去计算列表中的每一个元素样式块,并将该元素赋给一个变量
+// scss 中 使用map可以定义两个元素对应关系, $theme-color ('primary':blue)
+@each $key, $val in $theme-colors {
+  .icon-#{$key} {
+    color: $val;
+  }
+}

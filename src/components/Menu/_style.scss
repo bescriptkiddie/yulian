@@ -13,7 +13,7 @@
     transition: $menu-transition;
 
     &:hover, &:focus {
-      text-decoration: none
+      text-decoration: none;
     }
 
     &.is-disabled {
@@ -27,16 +27,90 @@
       border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
     }
   }
+
+  .submenu-item {
+    position: relative;
+
+    .submenu-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .arrow-icon {
+      // 控制动画速度
+      transition: transform .25s ease-in-out; // 不能继承的,作用到transform属性上面
+      margin-left: 3px;
+    }
+
+    &:hover {
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .is-vertical {
+    .arrow-icon {
+      transform: rotate(0deg) !important;
+    }
+  }
+
+  .is-opened.is-vertical {
+    .arrow-icon {
+      transform: rotate(90deg) !important;
+    }
+  }
+
+  .yl-submenu {
+    opacity: 0; // 不透明级别
+    display: none; // display会与opacity冲突
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap; // 文本不换行
+    transition: opacity .5s ease-in; // ease-in , ease-out 等都是渐显效果
+    .menu-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+      color: $body-color;
+
+      &.is-active, &:hover {
+        color: $menu-item-active-color !important;
+      }
+    }
+  }
+
+  .yl-submenu.menu-opened {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.menu-horizontal {
+  > .menu-item {
+    border-bottom: $menu-item-active-border-width solid transparent;
+  }
+
+  .yl-submenu {
+    position: absolute;
+    background: $white;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    border: $menu-border-width solid $menu-border-color;
+    box-shadow: $submenu-box-shadow;
+  }
 }
 
 .menu-vertical {
   flex-direction: column;
   border-bottom: 0px;
-  //margin:10px 20px;
-  border-right: $menu-border-width solid $menu-item-active-color;
+  margin: 10px 20px;
+  border-right: $menu-border-width solid $menu-border-color;
 
-  .menu-item {
+  > .menu-item {
     border-left: $menu-item-active-border-width solid transparent;
+
     &.is-active, &:hover {
       border-bottom: 0px;
       border-left: $menu-item-active-border-width solid $menu-item-active-color;

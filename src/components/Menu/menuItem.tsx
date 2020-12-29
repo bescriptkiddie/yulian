@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import classNames from 'classnames'
-import {MenuContext} from './Menu'
+import {MenuContext} from './menu'
 
 
 export interface MenuItemProps {
-    index?: number; // 利用 CloneElement 复制,不用每次都传入index
+    index?: string; // 利用 CloneElement 复制,不用每次都传入index
     disabled?: boolean;
     className?: string;
     style?: React.CSSProperties;
@@ -17,8 +17,9 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
         'is-disabled': disabled,
         'is-active': context.index === index
     });
+
     const handleClick = () => {
-        if (context.onSelect && !disabled && (typeof index === 'number')) {
+        if (context.onSelect && !disabled && (typeof index === 'string')) {
             context.onSelect(index) // 取消可选之后,这里会报错,因为存在undefined类型
         }
     }
