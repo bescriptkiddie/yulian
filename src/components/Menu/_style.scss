@@ -62,12 +62,12 @@
   }
 
   .yl-submenu {
-    opacity: 0; // 不透明级别
-    display: none; // display会与opacity冲突
+    //opacity: 0; // 不透明级别
+    //display: none; // display会与opacity冲突
     list-style: none;
     padding-left: 0;
     white-space: nowrap; // 文本不换行
-    transition: opacity .5s ease-in; // ease-in , ease-out 等都是渐显效果
+    //transition: opacity .5s ease-in; // ease-in , ease-out 等都是渐显效果
     .menu-item {
       padding: $menu-item-padding-y $menu-item-padding-x;
       cursor: pointer;
@@ -81,8 +81,8 @@
   }
 
   .yl-submenu.menu-opened {
-    display: block;
-    opacity: 1;
+    //display: block;
+    //opacity: 1;
   }
 }
 

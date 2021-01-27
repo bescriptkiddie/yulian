@@ -1,25 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './styles/index.scss'
 import {library} from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import {fas} from '@fortawesome/free-solid-svg-icons'
 import Icon from './components/Icon/icon'
 // import './App.css';
-// import Button, {ButtonType, ButtonSize} from './components/Button/Button'
-
+import Button from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
+import Transition from './components/Transition/transition'
 
 library.add(fas)
 const App: React.FC = () => {
+    const [show, setShow] = useState(false)
     return (
         <div className="App">
             <header className="App-header">
                 <Icon icon='arrow-down' theme='danger' size='10x'/>
-                <Menu defaultIndex="0"  onSelect={(index) => {
-                    alert(index)
-                }}
+                <Menu defaultIndex="0"
                       defaultOpenSubMenu={['2']}
+                      onSelect={(index) => {
+                          alert(index)
+                      }}
                 >
                     <MenuItem> menu 1 </MenuItem>
                     <MenuItem disabled> menu 2 </MenuItem>
@@ -30,6 +32,30 @@ const App: React.FC = () => {
                     </SubMenu>
                     <MenuItem> menu 3 </MenuItem>
                 </Menu>
+                <Button size="lg" onClick={() => {
+                    setShow(!show)
+                }}> Toggle </Button>
+                <Transition
+                    in={show}
+                    timeout={300}
+                    animation='zoom-in-left'
+                >
+
+                    <div>
+                        <h1>hello world!</h1>
+                        <h1>hello world!</h1>
+                        <h1>hello world!</h1>
+                        <h1>hello world!</h1>
+                    </div>
+                </Transition>
+                <Transition
+                    in={show}
+                    timeout={300}
+                    animation='zoom-in-top'
+                    wrapper
+                >
+                    <Button size='lg' btnType='primary' >这是个按钮</Button>
+                </Transition>
                 {/*Button 测试代码块*/}
                 {/*<Button onClick={(e) => {*/}
                 {/*    console.log(e.target)*/}

@@ -1,6 +1,6 @@
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
-import Button, {ButtonType, ButtonSize, ButtonProps} from './Button'
+import Button, {ButtonType, ButtonProps} from './button'
 
 const defaultProps = {
     // 创建了一个被监控的模拟函数
@@ -8,8 +8,8 @@ const defaultProps = {
 }
 
 const testProps: ButtonProps = {
-    btnType: ButtonType.Primary,
-    size: ButtonSize.Large,
+    btnType: 'primary',
+    size: 'lg',
     className: 'hello'
 }
 
@@ -37,7 +37,7 @@ describe('test Button component', () => {
         expect(element).toHaveClass('btn-primary btn-lg hello')
     })
     it('link button', () => {
-        const wrapper = render(<Button btnType={ButtonType.Link} href="www.google.com">Link</Button>)
+        const wrapper = render(<Button btnType='link' href="www.google.com">Link</Button>)
         const element = wrapper.getByText('Link')
         expect(element).toBeInTheDocument()
         expect(element.tagName).toEqual('A')
